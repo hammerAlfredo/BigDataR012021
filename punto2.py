@@ -40,3 +40,34 @@ estructapubli = 'headlines/raw/periodico=publimetro/year='+str(anho)+'/month='+s
 s3.upload_file('eltiempo.html',name_bucket,estructatiempo)
 s3.upload_file('publimetro.html',name_bucket,estructapubli)
 
+#athena
+client = boto3.client('athena', region_name='us-east-1')
+
+
+arreglo = ['eltiempo','publimetro']
+
+for i in arreglo:
+  params = {
+    'region': 'us-east-1',
+    'database': 'basenews',
+    'bucket': 'parcial1bigdatahammer',
+    'path': 'news/',
+    'query': 'alter table tablaperiodicos add partition(periodico="{}",year="{}",month="{}",day="{}");'.format(i,anho,mes,dia)
+  }
+
+  response_query_execution_id = client.start_query_execution(
+    QueryString = params['query'],
+    QueryExecutionContext = {
+      'Database' : params['database']
+    },
+    ResultConfiguration = {
+      'OutputLocation': 's3://' + params['bucket'] + '/' + params['path']
+    }
+
+  )
+
+  response_get_query_details = client.get_query_execution(
+    QueryExecutionId = response_query_execution_id['QueryExecutionId']
+  )
+
+print("Result Data point2")
