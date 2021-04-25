@@ -7,7 +7,7 @@ import boto3
 
 s3 = boto3.client('s3')
 #declaracion de tiempos
-hoy = dt.datetime.today()
+hoy = dt.datetime.today() 
 ayer = hoy-dt.timedelta(days=1)
 
 dia = hoy.day
@@ -55,7 +55,7 @@ s3.upload_file('grupo_aval.csv',name_bucket,estructaval)
 extracemargos.to_csv('cemento_argos.csv')
 s3.upload_file('cemento_argos.csv',name_bucket,estructargo)
 
-print(prueba subida)
+print('prueba subida')
 
 #athena
 """client = boto3.client('athena', region_name='us-east-1')
