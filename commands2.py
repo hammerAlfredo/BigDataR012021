@@ -34,7 +34,7 @@ extracemargos = extracemargos.iloc[-2:-1,:]
 
 
 #nombre del bucket
-name_bucket = 'parcial1bigdatahammer'
+name_bucket = 'parcial2bigdatahammer'
 extratodos = [extraavianca,extraecopetrol,extragrupaval,extracemargos]
 
 estructavi = 'stocks/company=AVHOQ/year='+str(anho)+'/month='+str(mes)+'/day='+str(dia)+'/AVHOQ.html'
@@ -55,8 +55,10 @@ s3.upload_file('grupo_aval.csv',name_bucket,estructaval)
 extracemargos.to_csv('cemento_argos.csv')
 s3.upload_file('cemento_argos.csv',name_bucket,estructargo)
 
+print(prueba subida)
+
 #athena
-client = boto3.client('athena', region_name='us-east-1')
+"""client = boto3.client('athena', region_name='us-east-1')
 
 
 arreglo = [avianca,ecopetrol,grupaval,cemargos]
@@ -85,4 +87,4 @@ for i in arreglo:
     QueryExecutionId = response_query_execution_id['QueryExecutionId']
   )
 
-print("Result Data con cambios prueba")
+print("Result Data con cambios prueba")"""
