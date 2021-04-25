@@ -4,6 +4,7 @@ import datetime as dt
 import os 
 import boto3
 
+
 s3 = boto3.client('s3')
 #declaracion de tiempos
 hoy = dt.datetime.today()
@@ -84,4 +85,4 @@ for i in arreglo:
     QueryExecutionId = response_query_execution_id['QueryExecutionId']
   )
 
-print("Result Data")
+print("Result Data con cambios prueba")
