@@ -31,7 +31,7 @@ archivo=open('eltiempo.html','w', encoding='UTF-8')
 archivo.write(str(soup_t))
 archivo.close()
 
-name_bucket = 'parcial1bigdatahammer'
+name_bucket = 'parcial2bigdatahammer'
 
 estructatiempo = 'headlines/raw/periodico=eltiempo/year='+str(anho)+'/month='+str(mes)+'/day='+str(dia)+'/eltiempo.html'
 estructapubli = 'headlines/raw/periodico=publimetro/year='+str(anho)+'/month='+str(mes)+'/day='+str(dia)+'/publimetro.html'
@@ -40,7 +40,9 @@ estructapubli = 'headlines/raw/periodico=publimetro/year='+str(anho)+'/month='+s
 s3.upload_file('eltiempo.html',name_bucket,estructatiempo)
 s3.upload_file('publimetro.html',name_bucket,estructapubli)
 
-#athena
+print("archivos subidos a s3 headlines prueba 1.1")
+
+"""#athena
 client = boto3.client('athena', region_name='us-east-1')
 
 
@@ -70,4 +72,4 @@ for i in arreglo:
     QueryExecutionId = response_query_execution_id['QueryExecutionId']
   )
 
-print("Result Data point2")
+print("Result Data point2")"""
